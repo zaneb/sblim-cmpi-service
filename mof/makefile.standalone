@@ -1,0 +1,17 @@
+# Makefile for SBLIM (/etc/init.d) Service Instrumentation 
+
+include ../setting.cmpi
+
+install: 
+	install -m 644 Linux_Service*.mof $(CIMOMMOF)
+
+uninstall:
+	$(RM) $(CIMOMMOF)/Linux_Service*.mof
+
+
+
+
+
+
+
+

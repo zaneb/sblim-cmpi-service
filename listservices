@@ -1,0 +1,46 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+my $spec;
+my @services;
+
+
+if ($#ARGV == -1) {
+    $spec="*";
+} elsif ($#ARGV == 0) {
+    $spec=$ARGV[0];
+} else {
+    print STDERR "usage listservices [spec]\n";
+    exit -1;
+}
+
+# get content od /etc/init.d
+my @servicesall = </etc/init.d/$spec>;
+
+# extract the "true" services from the directory
+foreach my $service (@servicesall) {
+    $service =~ s?/etc/init.d/??;
+    unless ( $service =~ /functions|halt|killall|single|linuxconf|kudzu|.*rpmorig|.*rpmnew|.*rpmsave|.*~|.*\.orig|mandrake_consmap|mandrake_everytime|mandrake_firstime/ ) {
+	push(@services, $service);
+    }
+}
+
+# get and print the status
+foreach my $service (@services) {
+    my $statusfilename="/etc/init.d/$service";
+    if (-x $statusfilename) {
+	my $servicestatus=`/etc/init.d/$service status 2> /dev/null`;
+	my $processes;
+	if ( $servicestatus =~ /running/ &&
+	     $servicestatus =~ /\(pid(.*)\)/ ) {
+	    print "$service 1 $1\n";
+	} elsif ( $servicestatus =~ /stopped/ ) {
+	    print "$service 0\n";
+	} else {
+	    print "$service -1\n";
+	}
+    }
+};
+
+

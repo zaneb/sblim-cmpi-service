@@ -1,0 +1,90 @@
+# Settings for SBLIM (/etc/init.d) Service Instrumentation 
+
+
+# Change the following lines to match your system
+
+#OPENCIMOM=1
+#OPENWBEM=1
+PEGASUS=1
+#STANDALONE=1
+
+# *********** SNIA CIMOM flavor ************* #
+
+ifdef OPENCIMOM
+CIMOM=/usr/sniacimom
+
+CIMOMINC=$(CIMOM)/include
+CIMOMLIB=$(CIMOM)/lib
+CIMOMMOF=$(CIMOM)/lib/mof
+
+COMMONINC=$(CIMOMINC)
+COMMONLIB=$(CIMOMLIB)
+
+MOFMAKEFILE=makefile.standalone
+
+endif
+
+# *********** SNIA CIMOM flavor ************* #
+
+
+# *********** OpenWBEM flavor ************* #
+
+ifdef OPENWBEM
+CIMOM=/usr/local/
+
+CIMOMINC=$(CIMOM)/include/openwbem
+CIMOMLIB=$(CIMOM)/lib/openwbem/cmpiproviders
+CIMOMMOF=$(CIMOM)/share/openwbem
+
+COMMONINC=$(CIMOMINC)
+COMMONLIB=$(CIMOM)/lib
+
+MOFMAKEFILE=makefile.standalone
+
+endif
+
+# *********** OpenWBEM flavor ************* #
+
+
+# ************* Pegasus flavor ************** #
+
+ifdef PEGASUS
+
+ifndef PEGASUS_HOME
+    ERROR = pegasus_home_undefined
+pegasus_home_undefined:
+	@ echo PEGASUS_HOME environment variable must be set to the Pegasus installation directory
+	@ exit 1
+endif
+
+#CIMOMINC=$(PEGASUS_ROOT)/src/Pegasus/ProviderManager2/CMPI
+CIMOMINC=$(PEGASUS_ROOT)/src/Pegasus/Provider/CMPI
+CIMOMLIB=$(PEGASUS_HOME)/lib
+CIMOMMOF=$(PEGASUS_ROOT)/Schemas
+
+COMMONINC=$(HOME)/sblim/include
+COMMONLIB=$(PEGASUS_HOME)/lib
+
+MOFMAKEFILE=makefile.pegasus
+
+endif
+
+# ************* Pegasus flavor ************** #
+
+
+# ************* Standalone flavor ************** #
+
+ifdef STANDALONE
+
+CIMOMINC=$(INSTALL_ROOT)/usr/include/cmpi
+CIMOMLIB=$(INSTALL_ROOT)/usr/lib/cmpi
+CIMOMMOF=$(INSTALL_ROOT)/usr/share/cmpi/mof
+
+COMMONINC=$(CIMOMINC)
+COMMONLIB=$(INSTALL_ROOT)/usr/lib
+
+MOFMAKEFILE=makefile.standalone
+
+endif
+
+# ************* Standalone flavor ************** #

@@ -1,0 +1,60 @@
+SBLIM Service Instrumentation README
+------------------------------------
+
+The Service Instrumentation allows to get information about the system
+services via CIMOM.
+The implemented class Linux_Service is a derivation of CIM_Service. Instances
+of this class represent system services started via the /etc/init.d scripts.
+
+NOTE: Currently only the RedHat scheme of /etc/init.d is being supported.
+Therefore this code will work only for Linux installations following that 
+scheme.
+
+WARNING: Unpredictable results may occur, if run under a different /etc/init.d
+scheme. As usual, contributions to fix this situation are welcome.
+
+
+Prerequisites
+------------- 
+
+- CIMOM
+  * SNIA CIMOM (http://www.opengroup.org/snia-cimom)
+    SBLIM cmpi-adapter module (please use always the latest version
+    (http://oss.software.ibm.com/developerworks/projects/sblim))
+  or
+  * Pegasus version 2.3 or higher (http://www.opengroup.org/pegasus)
+    CMPI interface part of Pegasus
+
+- the SBLIM cmpi-base module
+  * please use always the latest base version
+    (http://oss.software.ibm.com/developerworks/projects/sblim)
+
+
+The relevant files are
+----------------------
+
+CIM Schema
+----------
+mof/Linux_Service.mof
+
+Instrumentation Libraries
+-------------------------
+cmpiOSBase_ServiceProvider.c
+cmpiOSBase_HostedServiceProvider.c
+cmpiOSBase_ServiceProcessProvider.c
+
+Utility Libraries
+-----------------
+cimlxs.c
+
+
+
+
+
+
+
+
+
+
+
+

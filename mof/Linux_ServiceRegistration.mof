@@ -1,0 +1,147 @@
+//
+// Linux_ServiceRegistration.mof
+//
+// (C) Copyright IBM Corp. 2004
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Common Public License from
+// http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
+//
+// Author:       Viktor Mihajlovski <mihajlov@de.ibm.com>
+// Contributors: Heidi Neumann <heidineu@de.ibm.com>
+//
+// Description:
+// CIM classes for Linux (/etc/init.d/) Service Instrumentation
+//
+
+
+#pragma locale ("en_US")
+#pragma namespace ("root/PG_InterOp")
+
+
+// ===================================================================
+// 	Linux_Service
+// ===================================================================
+
+instance of PG_ProviderModule
+{
+   Name = "OSBase_ServiceProviderModule";
+   //The library name on disk
+   Location = "cmpiOSBase_ServiceProvider";
+   Vendor = "SBLIM";
+   Version = "2.0.0";
+   InterfaceType = "CMPI";
+   InterfaceVersion = "2.0.0";
+};
+
+instance of PG_Provider
+{
+   //The provider module as defined in PG_ProviderModule
+   ProviderModuleName = "OSBase_ServiceProviderModule";
+   // The provider name as referenced in the code
+   Name = "OSBase_ServiceProvider";
+};
+
+instance of PG_ProviderCapabilities
+{
+   //The provider module as defined in PG_ProviderModule
+   ProviderModuleName = "OSBase_ServiceProviderModule";
+   //The provider name as defined in PG_Provider
+   ProviderName = "OSBase_ServiceProvider";
+   CapabilityID = "1";
+   //Name of the CIM class as defined in the mof
+   ClassName = "Linux_Service";
+   Namespaces = {"root/cimv2"};
+   ProviderType = { 2,5 }; // Instance, Method
+   SupportedProperties = NULL; // All properties
+   SupportedMethods = NULL; // All methods
+};
+
+
+
+// -------------------------------------------------------------------
+// *******************************************************************
+// 	Associations
+// *******************************************************************
+// -------------------------------------------------------------------
+
+
+// ===================================================================
+// 	Linux_HostedService
+// ===================================================================
+
+instance of PG_ProviderModule
+{
+   Name = "OSBase_HostedServiceProviderModule";
+   //The library name on disk
+   Location = "cmpiOSBase_HostedServiceProvider";
+   Vendor = "SBLIM";
+   Version = "2.0.0";
+   InterfaceType = "CMPI";
+   InterfaceVersion = "2.0.0";
+};
+
+instance of PG_Provider
+{
+   //The provider module as defined in PG_ProviderModule
+   ProviderModuleName = "OSBase_HostedServiceProviderModule";
+   // The provider name as referenced in the code
+   Name = "OSBase_HostedServiceProvider";
+};
+
+instance of PG_ProviderCapabilities
+{
+   //The provider module as defined in PG_ProviderModule
+   ProviderModuleName = "OSBase_HostedServiceProviderModule";
+   //The provider name as defined in PG_Provider
+   ProviderName = "OSBase_HostedServiceProvider";
+   CapabilityID = "1";
+   //Name of the CIM class as defined in the mof
+   ClassName = "Linux_HostedService";
+   Namespaces = {"root/cimv2"};
+   ProviderType = { 3 }; // Association
+   SupportedProperties = NULL; // All properties
+   SupportedMethods = NULL; // All methods
+};
+
+
+// ===================================================================
+// 	Linux_ServiceProcess
+// ===================================================================
+
+instance of PG_ProviderModule
+{
+   Name = "OSBase_ServiceProcessProviderModule";
+   //The library name on disk
+   Location = "cmpiOSBase_ServiceProcessProvider";
+   Vendor = "SBLIM";
+   Version = "2.0.0";
+   InterfaceType = "CMPI";
+   InterfaceVersion = "2.0.0";
+};
+
+instance of PG_Provider
+{
+   //The provider module as defined in PG_ProviderModule
+   ProviderModuleName = "OSBase_ServiceProcessProviderModule";
+   // The provider name as referenced in the code
+   Name = "OSBase_ServiceProcessProvider";
+};
+
+instance of PG_ProviderCapabilities
+{
+   //The provider module as defined in PG_ProviderModule
+   ProviderModuleName = "OSBase_ServiceProcessProviderModule";
+   //The provider name as defined in PG_Provider
+   ProviderName = "OSBase_ServiceProcessProvider";
+   CapabilityID = "1";
+   //Name of the CIM class as defined in the mof
+   ClassName = "Linux_ServiceProcess";
+   Namespaces = {"root/cimv2"};
+   ProviderType = { 3 }; // Association
+   SupportedProperties = NULL; // All properties
+   SupportedMethods = NULL; // All methods
+};

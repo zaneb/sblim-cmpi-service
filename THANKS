@@ -1,0 +1,17 @@
+SBLIM Service Instrumentation THANKS
+------------------------------------
+
+
+* sblim-service-0.7.4 :
+
+:-)
+thanks to Pierre Neyron <pierre.neyron@imag.fr> for 
+Mandrake support to listservices script
+:-)
+
+The script was not tested by us on Mandrake. Caused 
+by differences between the output format on RH and 
+Mandrake, we do not guarantee, that the script runs 
+without problems under Mandrake.
+
+

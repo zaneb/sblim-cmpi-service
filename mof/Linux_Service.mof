@@ -1,0 +1,101 @@
+//
+// Linux_Service.mof
+//
+// (C) Copyright IBM Corp. 2004
+//
+// THIS FILE IS PROVIDED UNDER THE TERMS OF THE COMMON PUBLIC LICENSE
+// ("AGREEMENT"). ANY USE, REPRODUCTION OR DISTRIBUTION OF THIS FILE
+// CONSTITUTES RECIPIENTS ACCEPTANCE OF THE AGREEMENT.
+//
+// You can obtain a current copy of the Common Public License from
+// http://oss.software.ibm.com/developerworks/opensource/license-cpl.html
+//
+// Author:       Viktor Mihajlovski <mihajlov@de.ibm.com>
+// Contributors: Heidi Neumann <heidineu@de.ibm.com>
+//
+// Description:
+// CIM classes for Linux (/etc/init.d/) Service Instrumentation
+//
+
+
+#pragma locale ("en_US")
+//#pragma namespace ("root/cimv2")
+
+
+// -------------------------------------------------------------------
+// *******************************************************************
+// 	Classes
+// *******************************************************************
+// -------------------------------------------------------------------
+
+
+
+// ===================================================================
+// 	Linux_Service
+// ===================================================================
+
+[ Provider("cmpi:cmpiOSBase_ServiceProvider"),
+  Description("Linux service class. Represents a service like lpd. "
+	      "Note: this class doesn't cover specializations like "
+              "CIM_PrintService. Those mut be derived from " 
+	      "CIM_xxxService and connected to Linux_Service via "
+	      "CIM_LogicalIdentity associations.")
+]
+class Linux_Service : CIM_Service
+{ };
+
+
+
+// -------------------------------------------------------------------
+// *******************************************************************
+// 	Associations
+// *******************************************************************
+// -------------------------------------------------------------------
+
+
+
+// ===================================================================
+// 	Linux_HostedService
+// ===================================================================
+
+[ Association,
+  Description("Association between Linux computer system and service."
+              " Note: this association is very type strict, other "
+              "derivations of CIM_xxxSerivce must bring their own "
+	      "HostedService."),
+  Provider("cmpi:cmpiOSBase_HostedServiceProvider")
+] 
+class Linux_HostedService : CIM_HostedService
+{
+  [ Override ("Antecedent"),
+    Description ("The Computer System Container.")
+  ]
+  Linux_ComputerSystem REF Antecedent;
+
+  [ Override ("Dependent"),
+    Description ("The Service.")
+  ]
+  Linux_Service REF Dependent; 
+};
+
+
+// ===================================================================
+// 	Linux_ServiceProcess
+// ===================================================================
+
+[ Association,
+  Description("Linux service to process association."),
+  Provider("cmpi:cmpiOSBase_ServiceProcessProvider")
+] 
+class Linux_ServiceProcess : CIM_ServiceProcess
+{
+  [ Override ("Service"),
+    Description ("The Service.")
+  ]
+  Linux_Service REF Service;
+
+  [ Override ("Process"),
+    Description ("The current running Processes of this Service.")
+  ]
+  Linux_UnixProcess REF Process;
+};
