@@ -129,8 +129,8 @@ CMPIInstance * _makeInst_Service( CMPIBroker * _broker,
   keys = calloc(5,sizeof(char*));
   keys[0] = strdup("SystemCreationClassName");
   keys[1] = strdup("SystemName");
-  keys[0] = strdup("CreationClassName");
-  keys[1] = strdup("Name");
+  keys[2] = strdup("CreationClassName");
+  keys[3] = strdup("Name");
   CMSetPropertyFilter(ci,properties,keys);
   for( ;keys[keyCount]!=NULL;keyCount++) { free((char*)keys[keyCount]); }
   free(keys);

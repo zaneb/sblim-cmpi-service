@@ -75,7 +75,7 @@ CMPIStatus OSBase_ServiceProviderEnumInstanceNames( CMPIInstanceMI * mi,
   if (lhdl==NULL) {
     CMSetStatusWithChars( _broker, &rc, 
 			  CMPI_RC_ERR_FAILED, "Could not list services." ); 
-    _OSBASE_TRACE(1,("--- %s CMPI EnumInstances() failed : %s",_ClassName,CMGetCharPtr(rc.msg)));
+    _OSBASE_TRACE(1,("--- %s CMPI EnumInstanceNames() failed : %s",_ClassName,CMGetCharPtr(rc.msg)));
     return rc;
   }
 
