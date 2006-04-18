@@ -129,9 +129,9 @@ int LXS_ServiceOp(const char * service, const char * method)
   else 
     return -1; 
   
-  cmdstring = malloc(strlen("/sbin/service") + strlen(service) + strlen(op) +
+  cmdstring = malloc(strlen("/etc/init.d/") + strlen(service) + strlen(op) +
 		     3);
-  sprintf(cmdstring,"%s %s %s","/sbin/service",service,op);
+  sprintf(cmdstring,"%s%s %s","/etc/init.d/",service,op);
   rc = runcommand(cmdstring,NULL,&out,&err);
   freeresultbuf(out);
   freeresultbuf(err);
