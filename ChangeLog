@@ -1,0 +1,15 @@
+2007-05-15  Tyrel Datwyler <tyreld@us.ibm.com>
+
+        * Added Files:
+        
+          AUTHORS COPYING ChangeLog Makefile.am NEWS acinclude.m4
+          autoconfiscate.sh configure.ac provider-register.sh 
+          sblim-cmpi-service.rh.spec sblim-cmpi-service.spec.in
+          mof/Linux_Service.registration
+
+        Removed Files:
+
+          license.html setting.cmpi mof/makefile.pegasus
+          mof/makefile.standalone
+
+        Fixed 1719681: autoconfiscate package
