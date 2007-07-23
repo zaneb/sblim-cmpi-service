@@ -45,9 +45,9 @@
 
 /* ---------- method to create a CMPIObjectPath of Linux_Service -------------*/
 
-CMPIObjectPath * _makePath_Service( CMPIBroker * _broker,
-		 CMPIContext * ctx, 
-	         CMPIObjectPath * ref,
+CMPIObjectPath * _makePath_Service( const CMPIBroker * _broker,
+		      const CMPIContext * ctx, 
+	         const CMPIObjectPath * ref,
 	         LXS_Service * lxssvc,
 	         CMPIStatus * rc) {
   CMPIObjectPath * op = NULL;
@@ -85,9 +85,9 @@ CMPIObjectPath * _makePath_Service( CMPIBroker * _broker,
 
 /* ----------- method to create a CMPIInstance of Linux_Service --------------*/
 
-CMPIInstance * _makeInst_Service( CMPIBroker * _broker,
-	       CMPIContext * ctx, 
-	       CMPIObjectPath * ref,
+CMPIInstance * _makeInst_Service( const CMPIBroker * _broker,
+	       const CMPIContext * ctx, 
+	       const CMPIObjectPath * ref,
 	       const char ** properties,
 	       LXS_Service * lxssvc,
 	       CMPIStatus * rc) {

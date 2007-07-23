@@ -31,7 +31,7 @@
 #include "cmpiOSBase_Common.h"
 #include "cmpiOSBase_ServiceProcess.h"
 
-static CMPIBroker * _broker;
+static const CMPIBroker * _broker;
 
 /* ---------------------------------------------------------------------------*/
 /* private declarations                                                       */
@@ -46,7 +46,7 @@ static CMPIBroker * _broker;
 
 
 CMPIStatus OSBase_ServiceProcessProviderAssociationCleanup( CMPIAssociationMI * mi,
-           CMPIContext * ctx) {
+           const CMPIContext * ctx, CMPIBoolean terminate) {
   _OSBASE_TRACE(1,("--- %s CMPI AssociationCleanup() called",_ClassName));
   _OSBASE_TRACE(1,("--- %s CMPI AssociationCleanup() exited",_ClassName));
   CMReturn(CMPI_RC_OK);
@@ -107,14 +107,14 @@ CMPIStatus OSBase_ServiceProcessProviderAssociationCleanup( CMPIAssociationMI * 
  */
 
 CMPIStatus OSBase_ServiceProcessProviderAssociators( CMPIAssociationMI * mi,
-           CMPIContext * ctx,
-           CMPIResult * rslt,
-           CMPIObjectPath * cop,
-           char * assocClass,
-           char * resultClass,
-           char * role,
-           char * resultRole,
-           char ** propertyList ) {
+           const CMPIContext * ctx,
+           const CMPIResult * rslt,
+           const CMPIObjectPath * cop,
+           const char * assocClass,
+           const char * resultClass,
+           const char * role,
+           const char * resultRole,
+           const char ** propertyList ) {
   CMPIStatus       rc    = {CMPI_RC_OK, NULL};
   CMPIObjectPath * op    = NULL;
   int              refrc = 0;
@@ -160,13 +160,13 @@ CMPIStatus OSBase_ServiceProcessProviderAssociators( CMPIAssociationMI * mi,
 }
 
 CMPIStatus OSBase_ServiceProcessProviderAssociatorNames( CMPIAssociationMI * mi,
-           CMPIContext * ctx,
-           CMPIResult * rslt,
-           CMPIObjectPath * cop,
-           char * assocClass,
-           char * resultClass,
-           char * role,
-           char * resultRole) {
+           const CMPIContext * ctx,
+           const CMPIResult * rslt,
+           const CMPIObjectPath * cop,
+           const char * assocClass,
+           const char * resultClass,
+           const char * role,
+           const char * resultRole) {
   CMPIStatus       rc    = {CMPI_RC_OK, NULL};
   CMPIObjectPath * op    = NULL;
   int              refrc = 0;
@@ -221,12 +221,12 @@ CMPIStatus OSBase_ServiceProcessProviderAssociatorNames( CMPIAssociationMI * mi,
  */
 
 CMPIStatus OSBase_ServiceProcessProviderReferences( CMPIAssociationMI * mi,
-           CMPIContext * ctx,
-           CMPIResult * rslt,
-           CMPIObjectPath * cop,
-           char * assocClass,
-           char * role,
-           char ** propertyList ) {
+           const CMPIContext * ctx,
+           const CMPIResult * rslt,
+           const CMPIObjectPath * cop,
+           const char * assocClass,
+           const char * role,
+           const char ** propertyList ) {
   CMPIStatus       rc    = {CMPI_RC_OK, NULL};
   CMPIObjectPath * op    = NULL;
   int              refrc = 0;
@@ -272,11 +272,11 @@ CMPIStatus OSBase_ServiceProcessProviderReferences( CMPIAssociationMI * mi,
 }
 
 CMPIStatus OSBase_ServiceProcessProviderReferenceNames( CMPIAssociationMI * mi,
-           CMPIContext * ctx,
-           CMPIResult * rslt,
-           CMPIObjectPath * cop,
-           char * assocClass,
-           char * role) {
+           const CMPIContext * ctx,
+           const CMPIResult * rslt,
+           const CMPIObjectPath * cop,
+           const char * assocClass,
+           const char * role) {
   CMPIStatus       rc    = {CMPI_RC_OK, NULL};
   CMPIObjectPath * op    = NULL;
   int              refrc = 0;

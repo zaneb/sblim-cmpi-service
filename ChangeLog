@@ -1,3 +1,11 @@
+2007-07-23  Tyrel Datwyler <tyreld@us.ibm.com>
+
+   * cmpiOSBase_HostedServiceProvider.c, cmpiOSBase_Service.c,
+     cmpiOSBase_Service.h, cmpiOSBase_ServiceProcess.c,
+     cmpiOSBase_ServiceProcess.h, cmpiOSBase_ServiceProcessProvider.c,
+     cmpiOSBase_ServiceProvider.c:
+     Fixed 1457924 : Various Compile Warnings
+
 2007-05-15  Tyrel Datwyler <tyreld@us.ibm.com>
 
         * Added Files:

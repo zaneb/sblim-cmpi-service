@@ -38,20 +38,20 @@ static char * _ClassName = "Linux_Service";
 
 /* method to create a CMPIObjectPath of Linux_Service                         */
 
-CMPIObjectPath * _makePath_Service( CMPIBroker * _broker,
-                 CMPIContext * ctx, 
-                 CMPIObjectPath * cop,
-		 LXS_Service * lxssvc,
+CMPIObjectPath * _makePath_Service( const CMPIBroker * _broker,
+                 const CMPIContext * ctx, 
+                 const CMPIObjectPath * cop,
+		           LXS_Service * lxssvc,
                  CMPIStatus * rc);
 
 
 /* method to create a CMPIInstance of Linux_Service                           */
 
-CMPIInstance * _makeInst_Service( CMPIBroker * _broker,
-               CMPIContext * ctx, 
-               CMPIObjectPath * cop,
-	       const char ** properties,
-	       LXS_Service * lxssvc,
+CMPIInstance * _makeInst_Service( const CMPIBroker * _broker,
+               const CMPIContext * ctx, 
+               const CMPIObjectPath * cop,
+	            const char ** properties,
+	            LXS_Service * lxssvc,
                CMPIStatus * rc);
 
 /* ---------------------------------------------------------------------------*/

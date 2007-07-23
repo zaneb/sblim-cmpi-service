@@ -46,16 +46,16 @@ static char * _RefRightClass = "Linux_UnixProcess";
 
 /* method to create a CMPIObjectPath of Linux_ServiceProcess                  */
 
-CMPIObjectPath * _makePath_ServiceProcess( CMPIBroker * _broker, 
-					   CMPIObjectPath * service,
+CMPIObjectPath * _makePath_ServiceProcess( const CMPIBroker * _broker, 
+					   const CMPIObjectPath * service,
 					   CMPIObjectPath * process,
 					   CMPIStatus * rc);
 
 
 /* method to create a CMPIInstance of Linux_ServiceProcess                    */
 
-CMPIInstance * _makeInst_ServiceProcess( CMPIBroker * _broker,
-					 CMPIObjectPath * service,
+CMPIInstance * _makeInst_ServiceProcess( const CMPIBroker * _broker,
+					 const CMPIObjectPath * service,
 					 CMPIObjectPath * process,
 					 CMPIStatus * rc);
 
@@ -64,10 +64,10 @@ CMPIInstance * _makeInst_ServiceProcess( CMPIBroker * _broker,
 
 /* method to handle the association logic for Linux_ServiceProcess            */
 
-int assoc_ServiceProcess( CMPIBroker * _broker,
-			  CMPIContext * ctx,
-			  CMPIResult * rslt,
-			  CMPIObjectPath * ref,
+int assoc_ServiceProcess( const CMPIBroker * _broker,
+			  const CMPIContext * ctx,
+			  const CMPIResult * rslt,
+			  const CMPIObjectPath * ref,
 			  int assocType,
 			  CMPIStatus * rc );
 
