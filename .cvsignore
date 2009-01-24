@@ -1,0 +1,17 @@
+svclist
+stamp-h1
+sblim-cmpi-service.spec
+libtool
+configure
+config.status
+config.log
+config.h.in
+config.h
+autom4te.cache
+aclocal.m4
+Makefile.in
+Makefile
+.libs
+.deps
+*.so
+*.la
