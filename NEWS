@@ -1,5 +1,6 @@
 Bugs:
 - 1457924 Various Compile Warnings
+- 1760105 inconsistent registration error with sfcb
 
 Changes in 0.8.1
 ================
