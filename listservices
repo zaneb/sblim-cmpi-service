@@ -33,15 +33,16 @@ foreach my $service (@services) {
     if (-x $statusfilename) {
 	my $servicestatus=`/etc/init.d/$service status 2> /dev/null`;
 	my $processes;
-	if ( $servicestatus =~ /running/ ) {
+	if ( $servicestatus =~ /stopped/ || 
+	     $servicestatus =~ /unused/ ||
+	     $servicestatus =~ /dead/ ||
+             $servicestatus =~ /not running/) {
+	    print "$service 0\n";
+	} elsif ( $servicestatus =~ /running/ ) {
 	    if ($servicestatus =~ /\(pid(.*)\)/ ) {
 	      $pids = "$1";		
 	    }
 	    print "$service 1 $pids\n";
-	} elsif ( $servicestatus =~ /stopped/ || 
-		  $servicestatus =~ /unused/ ||
-		  $servicestatus =~ /dead/) {
-	    print "$service 0\n";
 	} else {
 	    print "$service -1\n";
 	}

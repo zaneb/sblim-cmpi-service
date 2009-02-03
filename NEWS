@@ -1,6 +1,7 @@
 Bugs:
 - 1457924 Various Compile Warnings
 - 1760105 inconsistent registration error with sfcb
+- 2558796 cmpi-service: listservices reports false positive for vmware
 
 Changes in 0.8.1
 ================

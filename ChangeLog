@@ -1,3 +1,9 @@
+2009-02-02  Tyrel Datwyler <tyreld@us.ibm.com>
+
+   * listservices:
+   Fixed 2558796: listservices reports false positive for vmware
+   (patch by Bas ten Berge <bas.ten.berge@gmail.com>)
+
 2009-01-23  Tyrel Datwyler <tyreld@us.ibm.com>
 
    * mof/Linux_Service.registration:
