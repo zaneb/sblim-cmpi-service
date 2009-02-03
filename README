@@ -18,16 +18,14 @@ Prerequisites
 ------------- 
 
 - CIMOM
-  * SNIA CIMOM (http://www.opengroup.org/snia-cimom)
-    SBLIM cmpi-adapter module (please use always the latest version
-    (http://oss.software.ibm.com/developerworks/projects/sblim))
+  * SFCB (http://sourceforge.net/projects/sblim/)
   or
   * Pegasus version 2.3 or higher (http://www.opengroup.org/pegasus)
     CMPI interface part of Pegasus
 
 - the SBLIM cmpi-base module
   * please use always the latest base version
-    (http://oss.software.ibm.com/developerworks/projects/sblim)
+    (http://sourceforge.net/projects/sblim)
 
 
 The relevant files are
