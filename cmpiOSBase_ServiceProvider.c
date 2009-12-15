@@ -231,7 +231,7 @@ CMPIStatus OSBase_ServiceProviderCreateInstance( CMPIInstanceMI * mi,
   return rc;
 }
 
-CMPIStatus OSBase_ServiceProviderSetInstance( CMPIInstanceMI * mi, 
+CMPIStatus OSBase_ServiceProviderModifyInstance( CMPIInstanceMI * mi, 
            const CMPIContext * ctx, 
            const CMPIResult * rslt, 
            const CMPIObjectPath * cop,

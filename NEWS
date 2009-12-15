@@ -1,3 +1,6 @@
+Bugs:
+- 2902835 pthread library not required but linked
+
 Changes in 0.8.2
 ================
 

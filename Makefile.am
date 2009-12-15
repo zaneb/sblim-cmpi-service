@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.1 2007/05/16 07:03:48 tyreld Exp $ 
+# $Id: Makefile.am,v 1.2 2009/12/15 20:03:38 tyreld Exp $ 
 # ==================================================================
 # (C) Copyright IBM Corp. 2005
 #
@@ -47,7 +47,6 @@ libcmpiOSBase_ServiceProvider_la_SOURCES = \
         cmpiOSBase_ServiceProvider.c \
         cmpiOSBase_Service.c
 libcmpiOSBase_ServiceProvider_la_LIBADD = \
-        -lpthread \
         -lcmpiOSBase_Common \
         -lcimlxs
         

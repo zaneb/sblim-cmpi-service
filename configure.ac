@@ -21,7 +21,7 @@ AC_PROG_LIBTOOL
 
 # Checks for libraries.
 AC_CHECK_LIB([cmpiOSBase_Common], [_assoc_get_inst])
-AC_CHECK_LIB([pthread], [pthread_create])
+# AC_CHECK_LIB([pthread], [pthread_create])
 # AC_CHECK_LIB([cimlxs], [LXS_Init])
     
 # Checks for header files.
@@ -73,7 +73,7 @@ AC_CONFIG_FILES([Makefile sblim-cmpi-service.spec])
 # Extend CPPFLAGS
 if echo $CPPFLAGS | grep -v CMPI_VERSION
 then
-   CPPFLAGS="$CPPFLAGS -DCMPI_VERSION=90"
+   CPPFLAGS="$CPPFLAGS"
 fi
 
 # Display configuration options
