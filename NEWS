@@ -1,5 +1,6 @@
 Bugs:
 - 2902835 pthread library not required but linked
+- 2901501 /usr/local/bin hardcoded in cimlxs.c
 
 Changes in 0.8.2
 ================

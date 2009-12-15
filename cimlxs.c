@@ -21,6 +21,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#ifndef LXS_SCRIPTDIR
+#define LXS_SCRIPTDIR "/usr/local/share/sblim-cmpi-service"
+#endif
+
 static LXS_Service *strToSvc(const char *);
 static void freeSvc(LXS_Service *);
 
@@ -42,7 +46,7 @@ static char * mklistcmd(const char * arg)
   if (scriptdir==NULL)
     scriptdir=".";
   */
-  scriptdir="/usr/local/bin";
+  scriptdir=LXS_SCRIPTDIR;
 
   cmdlen=strlen(scriptdir) + strlen(scriptname) + strlen(arg) + 2;
   cmdstring=malloc(cmdlen);

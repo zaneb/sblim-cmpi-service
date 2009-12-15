@@ -1,4 +1,4 @@
-# $Id: Makefile.am,v 1.2 2009/12/15 20:03:38 tyreld Exp $ 
+# $Id: Makefile.am,v 1.3 2009/12/15 20:21:03 tyreld Exp $ 
 # ==================================================================
 # (C) Copyright IBM Corp. 2005
 #
@@ -22,6 +22,9 @@ EXTRA_DIST=
 
 # docdir defines where the documentation goes
 docdir=$(datadir)/doc/$(PACKAGE)-$(VERSION)
+
+scriptdir=$(datadir)/sblim-cmpi-service
+AM_CPPFLAGS=-DLXS_SCRIPTDIR=\"$(scriptdir)\"
 
 #
 # Automake instructions for documentation
@@ -84,8 +87,6 @@ noinst_PROGRAMS = svclist
 svclist_SOURCES = svclist.c
 svclist_LDADD = -lcimlxs -lcmpiOSBase_Common
 
-dist_bin_SCRIPTS = listservices
-
 # We must explicity add the RPM spec files to the distribution package
 EXTRA_DIST+=$(PACKAGE).spec $(PACKAGE).rh.spec
 
@@ -96,7 +97,7 @@ REGISTRATIONS=$(srcdir)/mof/Linux_Service.registration
 
 # We must explicity add all the schema files to the distribution package
 pkgdata_DATA=$(SCHEMAS) $(REGISTRATIONS)
-pkgdata_SCRIPTS=provider-register.sh
+pkgdata_SCRIPTS=provider-register.sh listservices
 EXTRA_DIST+=mof $(pkgdata_SCRIPTS)
 
 # Register the provider(s) and class definition(s) to the current CIM server/CIMOM
