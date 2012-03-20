@@ -340,6 +340,129 @@ CMPIStatus OSBase_ServiceProviderInvokeMethod( CMPIMethodMI * mi,
   return rc;
 }
 
+CMPIStatus OSBase_ServiceProviderSetProperty(CMPIPropertyMI *mi,
+           const CMPIContext *ctx,
+           const CMPIResult *rslt,
+           const CMPIObjectPath *cop,
+           const char *name,
+           const CMPIData data) {
+  CMPIStatus rc = {CMPI_RC_OK, NULL};
+
+  _OSBASE_TRACE(1, ("--- %s CMPI SetProperty() called", _ClassName));
+
+  CMSetStatusWithChars(_broker, &rc,
+                       CMPI_RC_ERR_NOT_SUPPORTED, "CIM_ERR_NOT_SUPPORTED");
+
+  _OSBASE_TRACE(1, ("--- %s CMPI SetProperty() exited", _ClassName));
+  return rc;
+}
+
+CMPIStatus OSBase_ServiceProviderGetProperty(CMPIPropertyMI *mi,
+           const CMPIContext *ctx,
+           const CMPIResult *rslt,
+           const CMPIObjectPath *cop,
+           const char *name) {
+  CMPIData data;
+  CMPIString *class = NULL;
+  CMPIString *service = NULL;
+  char *clsname = NULL;
+  char *servicename = NULL;
+  LXS_Handle lhdl;
+  LXS_Service *lxssvc = NULL;
+  CMPIInstance *ci = NULL;
+  CMPIStatus rc = {CMPI_RC_OK, NULL};
+
+  _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() called", _ClassName));
+
+  class = CMGetClassName(cop, &rc);
+  service = CMGetKey(cop, "Name", &rc).value.string;
+  if (rc.rc != CMPI_RC_OK) {
+    if (rc.msg != NULL) {
+      _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed : %s",
+                        _ClassName, CMGetCharPtr(rc.msg)));
+    }
+    else {
+      _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed", _ClassName));
+    }
+    return rc;
+  }
+
+  clsname = CMGetCharPtr(class);
+  servicename = CMGetCharPtr(service);
+
+  if (strcasecmp(clsname,"linux_service") || servicename==NULL) {
+    CMSetStatusWithChars(_broker, &rc, CMPI_RC_ERR_INVALID_PARAMETER,
+			 "invalid class/service name");
+    return rc;
+  }
+
+  lhdl = LXS_InitFiltered(servicename);
+  if (lhdl == NULL) {
+    CMSetStatusWithChars(_broker, &rc,
+			 CMPI_RC_ERR_FAILED, "Could not list services." );
+    _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed : %s",
+                      _ClassName, CMGetCharPtr(rc.msg)));
+    return rc;
+  }
+
+  /* only looking for one - the first - match */
+  lxssvc = LXS_Next(lhdl);
+  if (lxssvc != NULL) {
+    const char *properties[] = {name, NULL};
+    ci = _makeInst_Service(_broker, ctx, cop, properties, lxssvc, &rc);
+  } else {
+    CMSetStatusWithChars(_broker, &rc,
+			 CMPI_RC_ERR_NOT_FOUND,
+                         "Specified Service Instance not found." );
+    _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed : %s",
+                      _ClassName, CMGetCharPtr(rc.msg)));
+    LXS_Term(lhdl);
+    return rc;
+  }
+
+  if (ci == NULL) {
+    if (rc.msg != NULL) {
+      _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed : %s",
+                        _ClassName, CMGetCharPtr(rc.msg)));
+    }
+    else {
+      _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed", _ClassName));
+    }
+    LXS_Term(lhdl);
+    return rc;
+  }
+
+  LXS_Term(lhdl);
+
+  data = CMGetProperty(ci, name, &rc);
+  if (rc.rc != CMPI_RC_OK) {
+    if (rc.msg != NULL) {
+      _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed : %s",
+                        _ClassName, CMGetCharPtr(rc.msg)));
+    }
+    else {
+      _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() failed", _ClassName));
+    }
+    CMRelease(ci);
+    return rc;
+  }
+
+  CMRelease(ci);
+
+  CMReturnData(rslt, &data.value, data.type);
+  CMReturnDone(rslt);
+
+  _OSBASE_TRACE(1, ("--- %s CMPI GetProperty() exited", _ClassName));
+  return rc;
+}
+
+CMPIStatus OSBase_ServiceProviderPropertyCleanup(CMPIPropertyMI * mi,
+           const CMPIContext *ctx,
+           CMPIBoolean terminating)
+{
+  CMPIStatus rc = {CMPI_RC_OK, NULL};
+  return rc;
+}
 
 /* ---------------------------------------------------------------------------*/
 /*                              Provider Factory                              */
@@ -353,6 +476,11 @@ CMInstanceMIStub( OSBase_ServiceProvider,
 CMMethodMIStub( OSBase_ServiceProvider, 
 		          OSBase_ServiceProvider, 
                 _broker, 
+                CMNoHook);
+
+CMPropertyMIStub( OSBase_ServiceProvider,
+	          OSBase_ServiceProvider,
+                _broker,
                 CMNoHook);
 
 /* ---------------------------------------------------------------------------*/

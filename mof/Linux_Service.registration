@@ -1,4 +1,4 @@
 # Classname Namespace Providername Libraryname Capabilities ...
-Linux_Service root/cimv2 OSBase_ServiceProvider cmpiOSBase_ServiceProvider instance method
+Linux_Service root/cimv2 OSBase_ServiceProvider cmpiOSBase_ServiceProvider instance property method
 Linux_HostedService root/cimv2 OSBase_HostedServiceProvider cmpiOSBase_HostedServiceProvider association
 Linux_ServiceProcess root/cimv2 OSBase_ServiceProcessProvider cmpiOSBase_ServiceProcessProvider association
